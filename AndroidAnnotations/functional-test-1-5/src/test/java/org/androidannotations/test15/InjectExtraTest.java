@@ -44,18 +44,14 @@ public class InjectExtraTest {
 
 	@Test
 	public void simple_string_extra_injected() {
-		controller.withIntent(ExtraInjectedActivity_.intent(context)
-				.stringExtra("Hello!").get())
-				.create();
+		controller.withIntent(ExtraInjectedActivity_.intent(context).stringExtra("Hello!").get()).create();
 		assertThat(activity.stringExtra).isEqualTo("Hello!");
 	}
 
 	@Test
 	public void array_extra_injected() {
 		CustomData[] customData = { new CustomData("42") };
-		controller.withIntent(ExtraInjectedActivity_.intent(context)
-				.arrayExtra(customData).get())
-				.create();
+		controller.withIntent(ExtraInjectedActivity_.intent(context).arrayExtra(customData).get()).create();
 		assertThat(activity.arrayExtra).isEqualTo(customData);
 	}
 
@@ -63,47 +59,45 @@ public class InjectExtraTest {
 	public void list_extra_injected() {
 		ArrayList<String> list = new ArrayList<String>();
 		list.add("Hello !");
-		controller.withIntent(ExtraInjectedActivity_.intent(context)
-				.listExtra(list).get())
-				.create();
+		controller.withIntent(ExtraInjectedActivity_.intent(context).listExtra(list).get()).create();
 		assertThat(activity.listExtra).isEqualTo(list);
 	}
 
 	@Test
 	public void int_extra_injected() {
-		controller.withIntent(ExtraInjectedActivity_.intent(context).intExtra(42)
-				.get())
-				.create();
+		controller.withIntent(ExtraInjectedActivity_.intent(context).intExtra(42).get()).create();
 		assertThat(activity.intExtra).isEqualTo(42);
 	}
 
 	@Test
 	public void int_array_extra_injected() {
 		byte[] byteArray = { 0, 2 };
-		controller.withIntent(ExtraInjectedActivity_.intent(context)
-				.byteArrayExtra(byteArray).get())
-				.create();
+		controller.withIntent(ExtraInjectedActivity_.intent(context).byteArrayExtra(byteArray).get()).create();
 		assertThat(activity.byteArrayExtra).isEqualTo(byteArray);
 	}
 
 	@Test
 	public void setIntent_reinjects_extra() {
-		controller.withIntent(ExtraInjectedActivity_.intent(context)
-				.stringExtra("Hello!").get())
-				.create();
+		controller.withIntent(ExtraInjectedActivity_.intent(context).stringExtra("Hello!").get()).create();
 
-		controller.newIntent(ExtraInjectedActivity_.intent(context)
-				.stringExtra("Hello Again!").get());
+		controller.newIntent(ExtraInjectedActivity_.intent(context).stringExtra("Hello Again!").get());
 
 		assertThat(activity.stringExtra).isEqualTo("Hello Again!");
 	}
 
 	@Test
 	public void extraWithoutValueInjected() {
-		controller.withIntent(ExtraInjectedActivity_.intent(context)
-				.extraWithoutValue("Hello!").get())
-				.create();
+		controller.withIntent(ExtraInjectedActivity_.intent(context).extraWithoutValue("Hello!").get()).create();
 		assertThat(activity.extraWithoutValue).isEqualTo("Hello!");
+	}
+
+	@Test
+	public void parcelableArray_injected() {
+		final CustomParcelableData[] data = new CustomParcelableData[] { new CustomParcelableData("1"), new CustomParcelableData("2") };
+
+		controller.withIntent(ExtraInjectedActivity_.intent(context).parcelableArrayData(data).get()).create();
+
+		assertThat(activity.parcelableArrayData).isEqualTo(data);
 	}
 
 }

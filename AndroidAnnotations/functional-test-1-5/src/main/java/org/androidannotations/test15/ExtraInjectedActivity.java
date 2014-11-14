@@ -47,6 +47,9 @@ public class ExtraInjectedActivity extends Activity {
 	@Extra
 	ParcelableSerializableData parcelableSerializableData;
 
+	@Extra
+	CustomParcelableData[] parcelableArrayData;
+
 	@Override
 	protected void onNewIntent(Intent intent) {
 		setIntent(intent);
@@ -55,10 +58,10 @@ public class ExtraInjectedActivity extends Activity {
 	void intentWithExtras() {
 		ExtraInjectedActivity_.intent(this).arrayExtra(null).start();
 		ExtraInjectedActivity_.intent(this).intExtra(42).get();
-		ExtraInjectedActivity_.intent(this).stringExtra("hello")
-				.startForResult(42);
-		ExtraInjectedActivity_.intent(this)
-				.parcelableSerializableData(new ParcelableSerializableData())
-				.get();
+		ExtraInjectedActivity_.intent(this).stringExtra("hello").startForResult(42);
+		ExtraInjectedActivity_.intent(this).parcelableSerializableData(new ParcelableSerializableData()).get();
+
+		final CustomParcelableData[] parcelableArray = new CustomParcelableData[] { new CustomParcelableData("1"), new CustomParcelableData("2") };
+		ExtraInjectedActivity_.intent(this).parcelableArrayData(parcelableArray);
 	}
 }
