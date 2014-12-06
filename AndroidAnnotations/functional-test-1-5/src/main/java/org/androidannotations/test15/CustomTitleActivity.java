@@ -20,7 +20,7 @@ import org.androidannotations.annotations.EActivity;
 
 import android.app.Activity;
 
-@EActivity
+@EActivity(R.layout.main)
 @CustomTitle(R.layout.component)
 public class CustomTitleActivity extends Activity {
 }

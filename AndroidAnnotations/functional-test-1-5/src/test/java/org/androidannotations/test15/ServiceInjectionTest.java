@@ -31,15 +31,15 @@ public class ServiceInjectionTest {
 
 		// in alphabetical order
 		
-		// assertThat(activity.accessibilityManager).isNotNull(); // TODO Robolectric 2.4
-		// assertThat(activity.accountManager).isNotNull(); // TODO no support yet in Robolectric
+		assertThat(activity.accessibilityManager).isNotNull();
+		assertThat(activity.accountManager).isNotNull();
 		assertThat(activity.activityManager).isNotNull();
 		assertThat(activity.alarmManager).isNotNull();
 		// assertThat(activity.appOpsManager).isNotNull(); // TODO API 19
 		// assertThat(activity.appWidgetManager).isNotNull(); // hidden API
 		assertThat(activity.audioManager).isNotNull();
 		// assertThat(activity.backupManager).isNotNull(); // hidden API
-		// assertThat(activity.bluetoothAdapter).isNotNull(); // TODO API 18
+		// assertThat(activity.bluetoothManager).isNotNull(); // TODO API 18
 		// assertThat(activity.cameraManager).isNotNull(); // hidden API
 		// assertThat(activity.captioningManager).isNotNull(); // TODO API 19
 		assertThat(activity.contentClipboardManager).isNotNull();
@@ -56,7 +56,7 @@ public class ServiceInjectionTest {
 		assertThat(activity.keyguardManager).isNotNull();
 		assertThat(activity.layoutInflater).isNotNull();
 		assertThat(activity.locationManager).isNotNull();
-		// assertThat(activity.mediaRouter).isNotNull(); // TODO Robolectric 2.4
+		assertThat(activity.mediaRouter).isNotNull();
 		// assertThat(activity.networkManagementService).isNotNull(); // hidden API
 		// assertThat(activity.networkPolicyManager).isNotNull(); // hidden API
 		// assertThat(activity.networkStatsService).isNotNull(); // hidden API

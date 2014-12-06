@@ -13,10 +13,16 @@
  * License for the specific language governing permissions and limitations under
  * the License.
  */
-package com.test;
+package org.androidannotations.test15.ormlite;
 
-public @interface ComplexAnnotation {
-	SimpleAnnotation value();
-	SimpleAnnotation[] array() default {};
+import org.androidannotations.annotations.EActivity;
+import org.androidannotations.annotations.OrmLiteDao;
+
+import android.app.Activity;
+
+@EActivity
+public class OrmLiteOnDestroyActivity extends Activity {
+
+	@OrmLiteDao(helper = DatabaseHelper.class)
+	UserDao userDao;
 }
-

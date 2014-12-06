@@ -14,3 +14,5 @@ script:
   - mvn -f AndroidAnnotations/pom.xml install
   - mvn -f examples/maveneclipse/pom.xml install -Dandroidannotations.version=3.3-SNAPSHOT
   - ./examples/gradle/gradlew build --build-file examples/gradle/build.gradle
+after_success:
+  - if [[ $TRAVIS_BRANCH == 'develop' && $TRAVIS_PULL_REQUEST == 'false' && $JAVA_HOME == '/usr/lib/jvm/java-7-oracle' ]]; then mvn -f AndroidAnnotations/pom.xml -pl androidannotations-bundle -am -DskipTests -Dquiet -s settings.xml deploy ; fi

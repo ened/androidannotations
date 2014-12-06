@@ -13,31 +13,22 @@
  * License for the specific language governing permissions and limitations under
  * the License.
  */
-package org.androidannotations.test15;
+package org.androidannotations.helper;
 
-import static org.fest.assertions.api.Assertions.assertThat;
-import android.os.Build;
-import android.view.KeyEvent;
+import static com.sun.codemodel.JExpr._null;
 
-//@RunWith(AndroidAnnotationsTestRunner.class)
-public class BackpressedActivityTestSkipped {
+import org.androidannotations.holder.HasLifecycleMethods;
+import org.androidannotations.process.ProcessHolder;
 
-	/**
-	 * Test skipped because {@link Build.VERSION#RELEASE} is set to null in
-	 * robolectric
-	 */
-	// @Test
-	public void backKeyHandled() {
+import com.sun.codemodel.JBlock;
+import com.sun.codemodel.JFieldVar;
 
-		BackpressedActivity_ activity = new BackpressedActivity_();
-		activity.onCreate(null);
+public class OrmLiteHelper {
 
-		assertThat(activity.backPressed).isFalse();
+	public static void injectReleaseInDestroy(JFieldVar databaseHelperRef, HasLifecycleMethods holder, ProcessHolder.Classes classes) {
+		JBlock destroyBody = holder.getOnDestroyBeforeSuperBlock();
 
-		activity.onKeyDown(KeyEvent.KEYCODE_BACK, new KeyEvent(null));
-
-		assertThat(activity.backPressed).isTrue();
-
+		destroyBody.staticInvoke(classes.OPEN_HELPER_MANAGER, "releaseHelper");
+		destroyBody.assign(databaseHelperRef, _null());
 	}
-
 }
